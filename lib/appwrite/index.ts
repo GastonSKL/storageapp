@@ -9,9 +9,9 @@ export const createSessionClient = async () => {
     .setEndpoint(appwriteConfig.endpointUrl)
     .setProject(appwriteConfig.projectId);
 
-  const session = (await cookies()).get("appwirte-session");
+  const session = (await cookies()).get("appwrite-session");
 
-  if (!session || !session.value) throw new Error("No sessions");
+  if (!session || !session.value) throw new Error("No session");
 
   client.setSession(session.value);
 
@@ -19,7 +19,7 @@ export const createSessionClient = async () => {
     get account() {
       return new Account(client);
     },
-    get database() {
+    get databases() {
       return new Databases(client);
     },
   };
@@ -35,7 +35,7 @@ export const createAdminClient = async () => {
     get account() {
       return new Account(client);
     },
-    get database() {
+    get databases() {
       return new Databases(client);
     },
     get storage() {
